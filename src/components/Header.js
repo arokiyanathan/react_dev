@@ -217,7 +217,7 @@ class Header extends Component {
                   type="button"
                   className={this.state.cart.length > 0 ? " " : "disabled"}
                 >
-                  PROCEED TO CHECKOUT
+                  
                 </button>
               </div>
             </div>

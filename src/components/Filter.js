@@ -13,8 +13,7 @@ class Filter extends React.Component {
  
   render() {
 
-   function ApplyFliter(){
-     }
+   
     return (
       <div>
         <InputRange
@@ -29,7 +28,7 @@ class Filter extends React.Component {
         <button
           className="filter_apply_btn"
           type="button"
-          onClick={ApplyFliter()}
+          
         >Apply
         </button>
     </div>
