@@ -1,23 +1,12 @@
-# Windows thumbnail cache files
-Thumbs.db
-ehthumbs.db
-ehthumbs_vista.db
+# Stylesheets
+.sass-cache/
+*.css.map
 
-# Folder config file
-Desktop.ini
+# Node Modules
+node_modules/
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# JS Mapping files
+*.js.map
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# =========================
-# Operating System Files
-# =========================
+# Misc
+.DS_Store
