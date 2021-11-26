@@ -17,6 +17,7 @@ class App extends Component {
       totalItems: 0,
       totalAmount: 0,
       term: "",
+      filterByAmount:{min:1,max:1000},
       category: "",
       cartBounce: false,
       quantity: 1,
@@ -34,11 +35,12 @@ class App extends Component {
     this.handleRemoveProduct = this.handleRemoveProduct.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleFilterByAmount=this.handleFilterByAmount.bind(this);
   }
   // Fetch Initial Set of Products from external API
   getProducts() {
-    let url ="https://api.myjson.com/bins/qzuzi";
-     // "https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json";
+    //let url ="https://api.myjson.com/bins/qzuzi";
+    let url = "https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json";
       
     axios.get(url).then(response => {
       this.setState({
@@ -46,13 +48,16 @@ class App extends Component {
       });
     });
   }
-  componentWillMount() {
+  /*componentWillMount() {
+    this.getProducts();
+  }*/
+  componentDidMount() {
     this.getProducts();
   }
-
   // Search by Keyword
   handleSearch(event) {
     this.setState({ term: event.target.value });
+    console.log(this.state.term);
   }
   // Mobile Search Reset
   handleMobileSearch() {
@@ -62,6 +67,11 @@ class App extends Component {
   handleCategory(event) {
     this.setState({ category: event.target.value });
     console.log(this.state.category);
+  }
+  //filter by amount
+  handleFilterByAmount(valuex){
+    this.setState({filterByAmount:{min:valuex.min,max:valuex.max}});
+    console.log("Parent:" +this.state.filterByAmount.max);
   }
   // Add to Cart
   handleAddToCart(selectedProducts) {
@@ -177,6 +187,8 @@ class App extends Component {
           productQuantity={this.state.quantity}
           updateQuantity={this.updateQuantity}
           openModal={this.openModal}
+          filterByAmount={this.state.filterByAmount}
+          updateVal={this.handleFilterByAmount}
         />
         <Footer />
         <QuickView

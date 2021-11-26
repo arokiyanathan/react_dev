@@ -6,29 +6,33 @@ class Filter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: { min: 100, max: 10000 },
+      value: { min: this.props.value.min, max: this.props.value.max },
       isApply:false
     };
+    this.valChange=this.valChange.bind(this);
   }
- 
+  valChange(){
+    const propVal={min:this.state.value.min,max:this.state.value.max};
+    this.props.onChange(propVal);
+  }
   render() {
 
    
     return (
       <div>
         <InputRange
-        maxValue={10000}
-        minValue={100}
+        maxValue={1000}
+        minValue={1}
         formatLabel={value => `Rs:${value}`}
         value={this.state.value}
         onChange={value => this.setState({ value })} 
         
         />
         <div className="filter_apply">
-        <button
+        <button 
           className="filter_apply_btn"
           type="button"
-          
+          onClick={this.valChange}
         >Apply
         </button>
     </div>

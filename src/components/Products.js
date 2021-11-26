@@ -8,15 +8,21 @@ import Filter from './Filter';
 class Products extends Component {
   constructor() {
     super();
+    this.setNewVal=this.setNewVal.bind(this);
+  }
+  setNewVal(newval){
+    const propVal={min:newval.min,max:newval.max};
+    this.props.updateVal(propVal);
+    console.log("aro1:" + propVal.max);
   }
   render() {
     let productsData;
     let term = this.props.searchTerm;
     let x;
-
+    let filterAmt=this.props.filterByAmount;
     function searchingFor(term) {
-      return function(x) {
-        return x.name.toLowerCase().includes(term.toLowerCase()) || !term;
+      return function(x) {//additionally added filter with price  
+        return (x.name.toLowerCase().includes(term.toLowerCase()) || !term) && x.price>=filterAmt.min && x.price<=filterAmt.max;
       };
     }
     productsData = this.props.productsList
@@ -27,7 +33,8 @@ class Products extends Component {
             key={product.id}
             price={product.price}
             name={product.name}
-            image={product.img_url}
+            //image={product.img_url}
+            image={product.image}
             id={product.id}
             discount={product.discount}
             category={product.category}
@@ -62,7 +69,7 @@ class Products extends Component {
       <div className="products-wrapper">
         <div className="filter">
           <div className="cap-filter"><b>Filters</b></div>
-          <Filter />
+          <Filter value={filterAmt} onChange={this.setNewVal} />
         </div>
         {view}
       </div>
