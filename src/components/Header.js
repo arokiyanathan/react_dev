@@ -154,7 +154,7 @@ class Header extends Component {
               <input
                 type="search"
                 ref="searchBox"
-                placeholder="Search"
+                placeholder="Search-commit1"
                 className="search-keyword"
                 onChange={this.props.handleSearch}
               />
